@@ -33,7 +33,7 @@
     .img-wrapper {
       border: 1px solid darkslategray;
       padding: 7px;
-      width: 128px;
+      width: 336px;
       float: left;
       margin-right: 25px;
       margin-bottom: 25px;
@@ -64,7 +64,7 @@
           document.querySelector('.disk-space').innerHTML = response.disk_used + "/" + response.disk_total +
             " (" + Math.round((response.disk_used / response.disk_total) * 100) + "%%)";
 
-          document.querySelector('.brightness').innerHTML = Math.round((response.brightness / 255) * 100) + "%%";
+          //document.querySelector('.brightness').innerHTML = Math.round((response.brightness / 255) * 100) + "%%";
           document.querySelector('.wifi-ssid').innerHTML = response.ssid;
           document.querySelector('.ipaddress').innerHTML = response.ipaddress;
 
@@ -81,8 +81,8 @@
               divElem.setAttribute('class', 'img-wrapper');
 
               var imgElem = document.createElement('img');
-              imgElem.setAttribute('width', '128');
-              imgElem.setAttribute('height', '128');
+              imgElem.setAttribute('width', '336');
+              imgElem.setAttribute('height', '24‬');
               imgElem.setAttribute('src', gifArray[key].path);
 
               var deleteLinkElem = document.createElement('a');
@@ -124,7 +124,7 @@
 
 <body>
 
-  <h1>8x8 Pixel Art</h1>
+  <h1>Arcade XXL</h1>
 
   <div>
     Disk Space: <span class="disk-space"></span><br>

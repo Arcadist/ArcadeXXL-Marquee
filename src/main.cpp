@@ -116,8 +116,8 @@ String imageElement(String imagePath, int imageId)
       String("<div class=\"img-wrapper\">") +
       String("<img ") +
 
-      String("width=\"128\" ") +
-      String("height=\"128\" ") +
+      String("width=\"336‬\" ") +
+      String("height=\"24\" ") +
 
       String("src=\"") +
       imagePath +
