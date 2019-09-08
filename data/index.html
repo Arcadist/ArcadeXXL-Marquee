@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Arcade XXL</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #fafafa;
+      /*max-width: 40rem;*/
+      padding: 2rem;
+      margin: auto;
+      background: #111;
+    }
+
+    img {
+      image-rendering: auto;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+    }
+
+    a {
+      color: #2ECC40;
+    }
+
+    h1,
+    h2,
+    strong {
+      color: #fafafa;
+    }
+
+    .img-wrapper {
+      border: 1px solid darkslategray;
+      padding: 7px;
+      width: 128px;
+      float: left;
+      margin-right: 25px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+  </style>
+
+  <script type="text/javascript">
+
+    var gifArray = [];
+
+    function makeAjaxCall() {
+      // Set up our HTTP request
+      var xhr = new XMLHttpRequest();
+
+      // Setup our listener to process completed requests
+      xhr.onload = function () {
+        // Process our return data
+        if (xhr.status >= 200 && xhr.status < 300) {
+          // What do when the request is successful
+
+          var response = JSON.parse(xhr.responseText);
+
+          console.log(response);
+
+          // status stuff
+
+          document.querySelector('.disk-space').innerHTML = response.disk_used + "/" + response.disk_total +
+            " (" + Math.round((response.disk_used / response.disk_total) * 100) + "%%)";
+
+          document.querySelector('.brightness').innerHTML = Math.round((response.brightness / 255) * 100) + "%%";
+          document.querySelector('.wifi-ssid').innerHTML = response.ssid;
+          document.querySelector('.ipaddress').innerHTML = response.ipaddress;
+
+          // gifs
+
+          // only update if the last response doesn't match current response
+          if (JSON.stringify(gifArray) !== JSON.stringify(response.gifs)) {
+            gifArray = response.gifs;
+
+            // show images
+            Object.keys(gifArray).map(function (value, key) {
+
+              var divElem = document.createElement('div');
+              divElem.setAttribute('class', 'img-wrapper');
+
+              var imgElem = document.createElement('img');
+              imgElem.setAttribute('width', '128');
+              imgElem.setAttribute('height', '128');
+              imgElem.setAttribute('src', gifArray[key].path);
+
+              var deleteLinkElem = document.createElement('a');
+              deleteLinkElem.setAttribute('href', '/delete?filename=' + gifArray[key].path);
+              deleteLinkElem.textContent = 'delete';
+
+              var setLinkElem = document.createElement('a');
+              setLinkElem.setAttribute('href', '/set?id=' + gifArray[key].id);
+              setLinkElem.textContent = 'set';
+
+              divElem.append(imgElem);
+              divElem.append(deleteLinkElem);
+              divElem.append(" | ");
+              divElem.append(setLinkElem);
+
+              document.querySelector('.gifs').append(divElem);
+
+            });
+
+
+          }
+
+        }
+
+      };
+
+      xhr.open('GET', '/ajax');
+      xhr.send();
+    }
+    makeAjaxCall();
+
+    setInterval(function () {
+      makeAjaxCall();
+    }, 5000);
+
+  </script>
+
+</head>
+
+<body>
+
+  <h1>8x8 Pixel Art</h1>
+
+  <div>
+    Disk Space: <span class="disk-space"></span><br>
+    Brightness: <span class="brightness"></span><br>
+    Connected to: <span class="wifi-ssid"></span><br>
+    IP Address: <span class="ipaddress"></span><br>
+  </div>
+  <br>
+  <div>
+    <a href="/deleteall">Delete All</a> | <a href="/random">Random</a>
+  </div>
+  <br>
+  <div>
+    <form id="uploadform" enctype="multipart/form-data" method="post" action="/upload">
+      <input id="fileupload" name="giffile" type="file" />
+      <input type="submit" value="Upload Gif" id="submit" />
+    </form>
+  </div>
+  <br>
+  <div class="gifs">
+    %FILE_LIST_TEMPLATE%
+  </div>
+
+</body>
+
+</html>
