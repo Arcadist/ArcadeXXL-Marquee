@@ -1,3 +1,4 @@
+#define FASTLED_ALLOW_INTERRUPTS 0
 // External Libs
 #include <Arduino.h>
 #include <FS.h>
@@ -104,7 +105,8 @@ void display_scrollText(String text)
     //matrix->setTextColor(currentColor);
     matrix->print(text);
     matrix->show();
-    delay(100);
+    FastLED.delay(100);
+//    delay(100);
   }
 }
 
@@ -340,12 +342,13 @@ void loop()
   if (!ready)
   {
     ready = true;
-    if (WiFi.isConnected())
-    {
-      String currentIp = WiFi.localIP().toString();
-      display_scrollText(String(currentIp));
-      display_scrollText(String(currentIp));
-    }
+    Serial.println("Ready");
+//    if (WiFi.isConnected())
+//    {
+//      String currentIp = WiFi.localIP().toString();
+//      display_scrollText(String(currentIp));
+//      display_scrollText(String(currentIp));
+//    }
   }
   else
   {

@@ -17,7 +17,7 @@
 
 // the digital pin for controlling the WS2812 LED Matrix
 #define LED_PIN  5
-#define COLOR_ORDER RGB
+#define COLOR_ORDER GRB
 #define CHIPSET WS2811
 
 // data directory (no trailing slash!)
@@ -30,7 +30,7 @@
 #define WIFIAPNAME "ArcadeXXL"
 
 // Time to wait (in seconds) for connection to portal
-#define WIFIPORTALTIMEOUT 180
+#define WIFIPORTALTIMEOUT 30
 
 // How long to play animated gif
 #define DISPLAY_TIME_SECONDS 10
