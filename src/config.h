@@ -11,9 +11,9 @@
 #define MATRIX_TILE_V  1
 
 // layout https://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library
-#define MATRIX_LAYOUT NEO_MATRIX_TOP + NEO_MATRIX_RIGHT + NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG
+#define MATRIX_LAYOUT NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG
 
-#define MATRIX_ROTATION 3
+#define MATRIX_ROTATION 0
 
 // the digital pin for controlling the WS2812 LED Matrix
 #define LED_PIN  5
