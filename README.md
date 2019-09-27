@@ -10,6 +10,10 @@ Handles all aspects of the marquee. The marquee is a built out of 8x112 LEDs and
 - Export image as gif and select animation in options. Save animation in `data/gifs/`
 - Save Gimpproject in `resources/`
 
+## How to create an animated GIF from multiple images
+```
+$ convert -delay 20 -loop 0 *png animated.gif
+```
 
 ## PCB
 http://easyeda.com/sschueller/arcadist
