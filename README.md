@@ -7,7 +7,9 @@ Handles all aspects of the marquee. The marquee is a built out of 8x112 LEDs and
 - Create a new transparent layer and rename it with a name followed by a number in brackets which represents how long the image should be shown. Example: "001 - Layer 1 (1000ms)"
 - Be aware since the layers are transparent the animation will be additive
 - The lowest layer is the first image shown
-- Export image as gif and select animation in options
+- Export image as gif and select animation in options. Save animation in `data/gifs/`
+- Save Gimpproject in `resources/`
+
 
 ## PCB
 http://easyeda.com/sschueller/arcadist
