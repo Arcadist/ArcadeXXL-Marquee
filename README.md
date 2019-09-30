@@ -1,6 +1,15 @@
 # Marquee
 Handles all aspects of the marquee. The marquee is a built out of 8x112 LEDs and is driven by an ESP32 with a webserver. The user is able to upload animated GIFs which will eventually be displayed in the marquee.
 
+Project files of a gif animation such as individual images or skripts are located in
+```
+resources/
+```
+Animated gifs are stored in 
+```
+data/gifs
+```
+
 ## How to create an animated GIF with Gimp
 - Create a new image 8 x 112 px
 - Use black as the background color
@@ -11,6 +20,7 @@ Handles all aspects of the marquee. The marquee is a built out of 8x112 LEDs and
 - Save Gimpproject in `resources/`
 
 ## How to create an animated GIF from multiple images
+If you have a bunch of individal images you'd like to put together as an animated gif you can use ImageMagicks convert utility:
 ```
 $ convert -delay 20 -loop 0 *png animated.gif
 ```
