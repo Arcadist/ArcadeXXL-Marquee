@@ -1,7 +1,7 @@
 # Marquee
 Handles all aspects of the marquee. The marquee is a built out of 8x112 LEDs and is driven by an ESP32 with a webserver. The user is able to upload animated GIFs which will eventually be displayed in the marquee.
 
-Project files of a gif animation such as individual images or skripts are located in
+Project files of a gif animation such as individual images or scripts are located in
 ```
 resources/
 ```
