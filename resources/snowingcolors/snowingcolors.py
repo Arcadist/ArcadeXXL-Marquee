@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 width = 112
-height = 6
+height = 8
 size = (width, height)
 
 im = Image.new('RGB', size)
