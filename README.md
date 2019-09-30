@@ -9,6 +9,9 @@ Animated gifs are stored in
 ```
 data/gifs
 ```
+## Examples
+<img src="data/gifs/pacman.gif" height="32">
+<img src="data/gifs/the-arcadist.gif" height="32">
 
 ## How to create an animated GIF with Gimp
 - Create a new image 8 x 112 px
