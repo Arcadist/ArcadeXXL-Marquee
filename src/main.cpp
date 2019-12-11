@@ -20,7 +20,7 @@
 #include "config.h"
 
 int num_files;
-int selected_index = -1;
+int selected_index = 0;
 
 boolean ready = false;
 
@@ -211,7 +211,7 @@ void setupServer()
   });
 
   server.on("/random", HTTP_GET, [](AsyncWebServerRequest *request) {
-    selected_index = -1;
+    selected_index = 0;
     request->redirect("/");
   });
 
@@ -317,6 +317,8 @@ void setup()
   decoder.setFileReadBlockCallback(fileReadBlockCallback);
 
   num_files = enumerateGIFFiles(GIF_DIRECTORY, false);
+  Serial.print("number of files: ");
+  Serial.println(num_files);
 
   wifiManager.setAPCallback(configModeCallback);
   wifiManager.setConfigPortalTimeout(WIFIPORTALTIMEOUT);
@@ -353,21 +355,24 @@ void loop()
   else
   {
 
-    int index = random(num_files);
+    //int index = random(num_files);
     static unsigned long futureTime;
     if (selected_index >= 0)
     {
-      index = selected_index;
+      // index = selected_index;
     }
 
     if (futureTime < millis())
     {
-      if (openGifFilenameByIndex(GIF_DIRECTORY, index) >= 0)
+      //if (openGifFilenameByIndex(GIF_DIRECTORY, index) >= 0)
+      if (openGifFilenameByIndex(GIF_DIRECTORY, selected_index) >= 0)
       {
         decoder.startDecoding();
 
         // Calculate time in the future to terminate animation
         futureTime = millis() + (DISPLAY_TIME_SECONDS * 1000);
+        // get the next index
+        selected_index = (selected_index + 1) % num_files;
       }
     }
 
